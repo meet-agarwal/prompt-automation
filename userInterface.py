@@ -433,9 +433,16 @@ class PRDGeneratorUI(QWidget):
             if child.widget():
                 child.widget().deleteLater()
 
+    from PyQt5.QtCore import Qt
+
+
+
     def show_section_content(self, section):
         # Section description
         desc = QLabel(f"Select a template style for the {section} section:")
+        # make sure it really draws no background
+        desc.setAttribute(Qt.WA_TranslucentBackground, True)
+        desc.setAutoFillBackground(False)
         desc.setStyleSheet("""
             QLabel {
                 background-color: transparent;

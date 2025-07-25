@@ -1,3 +1,5 @@
+# promptreader.py
+
 import os
 import json
 
@@ -37,12 +39,13 @@ class PromptReader:
         """
         result = {}
         for section, style_key in selection_map.items():
-            # build filename (e.g., "style2.txt")
             filename = f"{style_key}.txt"
             file_path = os.path.join(self.prompt_root, section, filename)
 
             if not os.path.isfile(file_path):
-                raise FileNotFoundError(f"No file for section '{section}' with key '{style_key}': {file_path}")
+                raise FileNotFoundError(
+                    f"No file for section '{section}' with key '{style_key}': {file_path}"
+                )
 
             with open(file_path, 'r', encoding='utf‑8') as f:
                 result[section] = f.read()
