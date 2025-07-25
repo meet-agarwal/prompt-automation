@@ -1,0 +1,41 @@
+Section 5: Gallery (Cross-Selling)  
+
+ Objective:  
+Display 10 related product cards in a horizontally scrolling, auto-sliding gallery with a uniform layout.  
+
+ Requirements:  
+1. Card Layout:  
+   - Image (90% height): Square-shaped (1:1 aspect ratio), covering the top 90% of the card.  
+   - Button (10% height): A "View" button at the bottom, spanning the full width.  
+   - Overall Card: Uniform size for all cards with consistent spacing.  
+
+2. Gallery Behavior:  
+   - Auto-Slide Scroll:  
+     - Infinite, smooth, continuous horizontal scrolling.  
+     - Pauses on hover (user interaction).  
+   - CSS-Only Implementation:  
+     - Must use `@keyframes` for animation (no JavaScript).  
+     - Smooth, seamless looping effect.  
+
+3. Image Links:  
+   ```plaintext
+   Product 1: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg  
+   Product 2: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_2.jpeg  
+   Product 3: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_3.jpeg  
+   Product 4: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_4.jpeg  
+   Product 5: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_5.jpeg  
+   Product 6: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_6.jpeg  
+   Product 7: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_7.jpeg  
+   Product 8: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_8.jpeg  
+   Product 9: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_9.jpeg  
+   Product 10: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_10.jpeg  
+   ```
+
+4. Technical Implementation Notes:  
+   - Use `display: flex` for the card container.  
+   - Apply `@keyframes` with `transform: translateX()` for smooth scrolling.  
+   - Ensure hover pauses the animation (`animation-play-state: paused`).  
+   - Optimize for responsiveness (works on different screen sizes).  
+   - there will be duplicate gallery so that we can perciver the infinite scrolling effect 
+   - let each cards width be 15rem 
+

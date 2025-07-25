@@ -1,0 +1,24 @@
+Section 1: Header
+ Objective: Display a clean, responsive branding area with navigation on desktop only.
+ Layout Specification:
+ Center the logo at the top (desktop and mobile).
+ Directly below the logo, display a horizontal navigation menu.
+ Menu should not appear on mobile (<768px).
+ Menu items must be horizontally aligned with subtle hover effects.
+ Ensure layout adjusts gracefully between desktop and mobile screens.
+  Visual Output Constraints:
+ The logo and menu must appear as visual components in the final design.
+ All CSS should be placed inside the `<style>` tag in the `<head>`.
+ Use no JavaScript, no external stylesheets, no font imports.
+ Use pastel color palettes or inherit from the selected visual theme.
+ Links:
+ Logo URL:
+  `https://listingbot.s3.apsouth1.amazonaws.com/resources/images/shullee/logo.png`
+ Menu Items (Label → Link):
+   HOME → `https://www.ebay.com/str/uwajhjewels?_tab=about`
+   SHOP → `https://www.ebay.com/str/uwajhjewels`
+   DEALS → `https://www.ebay.com/str/uwajhjewels?_tab=sales`
+   CONTACT → `https://www.ebay.com/cnt/intermediatedFAQ?requested=shullee`
+   FEEDBACK → `https://www.ebay.com/str/uwajhjewels?_tab=feedback`
+
+

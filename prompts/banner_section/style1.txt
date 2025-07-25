@@ -1,0 +1,62 @@
+Section 2: Infinite Auto‑Sliding Banner Carousel
+
+Objective:
+Create a responsive, contained‑width, infinitely looping image carousel with auto‑sliding and manual navigation controls using pure CSS.
+
+Requirements:
+
+Place the banner slider immediately below the header, constrained to the same maximum content width as the rest of the page (e.g. 1200px) and centered.
+
+Display 4 images (all 1280×290 px) in a continuous, infinite auto‑sliding loop.
+
+Smoothly transition between slides with no “jump” at the loop point.
+
+Use only CSS (no JavaScript), via one of these methods:
+• Radio buttons + :checked selectors
+• CSS @keyframes animation with infinite looping (duplicate slides if needed)
+• CSS transform/translate techniques
+
+Technical Specifications:
+
+Image Aspect Ratio: All banners are 1280×290 (≈4.41:1). Maintain that ratio:
+• If container width is 1200px, height = (290/1280) × 1200 ≈ 272px.
+• Enforce height: auto; max-height: 400px; so very wide screens don’t over‑tall the carousel.
+
+Container:
+• .carousel-container {
+max-width: 1200px;
+margin: 0 auto;
+overflow: hidden;
+}
+• .carousel-container img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+Auto‑Advance: Advance every 3s with a smooth 0.8s ease‑in‑out transition.
+
+Looping: Seamless infinite loop—duplicate first and last slides in your markup (or via CSS) to avoid gaps.
+
+Navigation & Accessibility:
+• Use hidden <input type="radio"> elements and <label> arrows for manual controls.
+• Add aria-label="Previous slide" / aria-label="Next slide".
+• Pause animation when any control or slide receives focus.
+
+Performance:
+• Apply will-change: transform to the sliding track.
+• Use loading="lazy" on images if supported.
+
+Content Assets:
+banner1 → https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_1.jpeg
+banner2 → https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_2.jpeg
+banner3 → https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_3.jpeg
+banner4 → https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_4.jpeg
+
+Implementation Notes:  
+- Wrap the carousel in a `<div class="carousel-container">` which shares your page’s max‑width and horizontal centering rules.  
+- Inside, hide overflow and size the inner slider to fit exactly four slides’ widths.  
+- Duplicate the first and last slides in markup or via CSS `:nth-child()` cloning to achieve a seamless loop.  
+- Use CSS `@media` queries to adjust height/aspect ratio on smaller viewports.  
+- Include meaningful `alt` text for each `<img>`.  
+- the banners should not be visible in the mobile View 

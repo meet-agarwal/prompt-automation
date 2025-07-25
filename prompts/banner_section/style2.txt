@@ -1,0 +1,40 @@
+Section 2: Infinite Auto‑Sliding Banner Carousel
+
+Objective:
+contained‑width, static single banner .
+
+Requirements:
+
+Place the banner immediately below the header, constrained to the same maximum content width as the rest of the page (e.g. 1200px) and centered.
+
+Display a image (1280×290 px)
+
+Use only CSS (no JavaScript)
+
+Technical Specifications:
+
+Image Aspect Ratio: The banners are 1280×290. Maintain that ratio:
+• If container width is 1200px, height = (290/1280) × 1200 ≈ 272px.
+• Enforce height: auto; max-height: 400px; so very wide screens don’t over‑tall the carousel.
+
+Container:
+• .carousel-container {
+max-width: 1200px;
+margin: 0 auto;
+overflow: hidden;
+}
+• .carousel-container img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+
+Content Assets:
+banner1 → https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_1.jpeg
+
+Implementation Notes:  
+- Wrap the carousel in a `<div class="carousel-container">` which shares your page’s max‑width and horizontal centering rules.  
+- Inside, hide overflow and size the inner slider to fit exactly four slides’ widths.  
+- Include meaningful `alt` text for each `<img>`.  
+- the banners should not be visible in the mobile View 

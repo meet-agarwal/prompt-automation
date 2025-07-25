@@ -1,0 +1,30 @@
+{
+    "banner" : {
+        "style1" : "4 banner Images , Auto Scroll",
+        "style2" : "1 Banner image, Static"
+    },
+    "footer" : {
+        "style1" : "Footer Style 1",
+        "style2" : "Footer Style 2"
+    },
+    "header" : {
+        "style1" : "Centered logo and horizontal menu below",
+        "style2" : "Centered logo and horizontal menu below with dropdown menus",
+        "style3" : "left align logo and riht align menu"
+    },
+    "product" : {
+        "style1" : "image and description left and the table at right and title at the top",
+        "style2" : "title then image then description then table",
+        "style3" : "image at right and the table and description at left and title at the top",
+        "style4" : "title at top, image at left, description at right, table at bottom  and tags at the bottom"
+    },
+    "information" : {
+        "style1" : "Tabbed Info Section , Arodian in Mobile view"
+    },
+    "galler" : {
+        "style1" : "10 Cards , Horizontal AutoSlide Scroll , pause when hover",
+        "style2" : "8 Cards , Grid View 2x4",
+        "style3" : "9 Cards , Grid View 3x3"
+    }
+}
+

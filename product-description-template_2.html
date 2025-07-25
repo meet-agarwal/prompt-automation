@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Description Template</title>
+  <style>
+    /* Theme: Elegant Gold */
+    :root {
+      --bg-color: #ffffff;
+      --primary-color: #DAA520; /* Gold */
+      --accent-color: #B8860B; /* Darker Gold for hover/active */
+      --text-color: #333333;
+      --light-text-color: #666666;
+      --border-color: #e0e0e0;
+      --heading-font: 'Playfair Display', serif;
+      --body-font: 'Georgia', serif;
+      --button-bg: var(--primary-color);
+      --button-text: #ffffff;
+      --link-color: var(--primary-color);
+      --hover-link-color: var(--accent-color);
+      --card-bg: #fdfdfd;
+      --shadow-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Global Styles */
+    body {
+      font-family: var(--body-font);
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--heading-font);
+      color: var(--text-color);
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--hover-link-color);
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    /* Section Containers */
+    section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    /* Header Section */
+    #section-header .header-layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Logo Left, Menu Right */
+      padding: 15px 20px;
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 4px var(--shadow-color);
+    }
+    #section-header .header-layout .logo img {
+      height: 50px; /* Adjust as needed */
+      width: auto;
+    }
+    #section-header .header-layout .nav-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 25px;
+    }
+    #section-header .header-layout .nav-menu a {
+      font-family: var(--heading-font);
+      font-size: 1.1em;
+      padding: 5px 0;
+      position: relative;
+    }
+    #section-header .header-layout .nav-menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease-in-out;
+    }
+    #section-header .header-layout .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    /* Banner Slider Section */
+    #section-banner .slider-container {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+    }
+    #section-banner .slider-wrapper {
+      display: flex;
+      width: 400%; /* 4 images */
+      transition: transform 0.6s ease-in-out;
+    }
+    #section-banner .slider-slide {
+      width: 25%; /* Each slide takes 25% of the wrapper */
+      flex-shrink: 0;
+    }
+    #section-banner .slider-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Slider Navigation (Radio Buttons) */
+    #section-banner input[type="radio"] {
+      display: none;
+    }
+    #section-banner .slider-nav-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    #section-banner .slider-nav-dots label {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #section-banner input#slide1:checked ~ .slider-nav-dots label:nth-child(1),
+    #section-banner input#slide2:checked ~ .slider-nav-dots label:nth-child(2),
+    #section-banner input#slide3:checked ~ .slider-nav-dots label:nth-child(3),
+    #section-banner input#slide4:checked ~ .slider-nav-dots label:nth-child(4) {
+      background-color: var(--primary-color);
+    }
+
+    /* Slider Arrows */
+    #section-banner .slider-nav-arrows label {
+      display: none; /* Hide all by default */
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 1.5em;
+      border-radius: 4px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #section-banner .slider-nav-arrows label:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    #section-banner .slider-nav-arrows label.prev-arrow { left: 15px; }
+    #section-banner .slider-nav-arrows label.next-arrow { right: 15px; }
+
+    /* Show specific arrows based on checked slide */
+    #section-banner input#slide1:checked ~ .slider-nav-arrows #prev-slide1,
+    #section-banner input#slide1:checked ~ .slider-nav-arrows #next-slide1 { display: block; }
+
+    #section-banner input#slide2:checked ~ .slider-nav-arrows #prev-slide2,
+    #section-banner input#slide2:checked ~ .slider-nav-arrows #next-slide2 { display: block; }
+
+    #section-banner input#slide3:checked ~ .slider-nav-arrows #prev-slide3,
+    #section-banner input#slide3:checked ~ .slider-nav-arrows #next-slide3 { display: block; }
+
+    #section-banner input#slide4:checked ~ .slider-nav-arrows #prev-slide4,
+    #section-banner input#slide4:checked ~ .slider-nav-arrows #next-slide4 { display: block; }
+
+    /* Slide transitions based on checked radio */
+    #section-banner input#slide1:checked ~ .slider-wrapper { transform: translateX(0%); }
+    #section-banner input#slide2:checked ~ .slider-wrapper { transform: translateX(-25%); }
+    #section-banner input#slide3:checked ~ .slider-wrapper { transform: translateX(-50%); }
+    #section-banner input#slide4:checked ~ .slider-wrapper { transform: translateX(-75%); }
+
+    /* Auto-slide animation */
+    @keyframes slideAnimation {
+      0%, 20% { transform: translateX(0%); }
+      25%, 45% { transform: translateX(-25%); }
+      50%, 70% { transform: translateX(-50%); }
+      75%, 95% { transform: translateX(-75%); }
+      100% { transform: translateX(0%); } /* Loop back to start */
+    }
+    #section-banner .slider-wrapper {
+      animation: slideAnimation 20s infinite ease-in-out; /* 4 slides * 5s per slide */
+    }
+    /* Pause animation on hover */
+    #section-banner .slider-container:hover .slider-wrapper {
+      animation-play-state: paused;
+    }
+    /* Manual click overrides auto-slide */
+    #section-banner input:checked ~ .slider-wrapper {
+      animation-play-state: paused;
+    }
+
+
+    /* Product Detail Section */
+    #section-product .product-layout {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      padding: 20px;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+    }
+    #section-product .product-image {
+      flex: 1;
+      min-width: 300px; /* Ensure image has enough space */
+    }
+    #section-product .product-info {
+      flex: 2;
+    }
+    #section-product .product-title {
+      font-size: 2.2em;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    #section-product .product-tags {
+      font-size: 0.9em;
+      color: var(--light-text-color);
+      margin-bottom: 20px;
+    }
+    #section-product .product-description {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    #section-product .product-highlights ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #section-product .product-highlights li {
+      margin-bottom: 8px;
+      padding-left: 25px;
+      position: relative;
+    }
+    #section-product .product-highlights li::before {
+      content: '✓'; /* Checkmark icon */
+      color: var(--primary-color);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Product Specs Table */
+    #section-product table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 0.95em;
+      border: 1px solid var(--border-color); /* Table border */
+    }
+    #section-product table th,
+    #section-product table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color); /* Row borders */
+    }
+    #section-product table th {
+      background-color: var(--primary-color);
+      color: var(--button-text);
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    #section-product table tr:nth-child(even) {
+      background-color: #f9f9f9; /* Alternate row background */
+    }
+    #section-product table tr:hover {
+      background-color: #f0f0f0; /* Hover effect */
+    }
+    #section-product table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Tabs / Accordion Section */
+    #section-tabs .tabs-layout {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+      padding: 20px;
+    }
+
+    /* Desktop Tabs */
+    #section-tabs .tab-inputs {
+      display: flex;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+    #section-tabs input[type="radio"] {
+      display: none;
+    }
+    #section-tabs .tab-label {
+      padding: 15px 25px;
+      cursor: pointer;
+      font-family: var(--heading-font);
+      font-size: 1.1em;
+      color: var(--light-text-color);
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+      flex-grow: 1;
+      text-align: center;
+    }
+    #section-tabs .tab-label:hover {
+      color: var(--primary-color);
+    }
+    #section-tabs input#tab1:checked ~ .tab-inputs label:nth-child(1),
+    #section-tabs input#tab2:checked ~ .tab-inputs label:nth-child(2),
+    #section-tabs input#tab3:checked ~ .tab-inputs label:nth-child(3),
+    #section-tabs input#tab4:checked ~ .tab-inputs label:nth-child(4) {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    #section-tabs .tab-content {
+      display: none;
+      padding: 20px 0;
+    }
+    #section-tabs input#tab1:checked ~ .accordion-wrapper #content1,
+    #section-tabs input#tab2:checked ~ .accordion-wrapper #content2,
+    #section-tabs input#tab3:checked ~ .accordion-wrapper #content3,
+    #section-tabs input#tab4:checked ~ .accordion-wrapper #content4 {
+      display: block;
+    }
+
+    /* Gallery Section */
+    #section-gallery .gallery-layout {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Static Grid 3x3 */
+      gap: 20px;
+      padding: 20px;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+    }
+    #section-gallery .gallery-item {
+      text-align: center;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #section-gallery .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px var(--shadow-color);
+    }
+    #section-gallery .gallery-item img {
+      width: 100%;
+      height: 200px; /* Fixed height for uniformity */
+      object-fit: cover;
+      border-bottom: 1px solid var(--border-color);
+    }
+    #section-gallery .gallery-item-title {
+      padding: 10px;
+      font-family: var(--heading-font);
+      font-size: 1.1em;
+      color: var(--text-color);
+    }
+
+    /* Footer Section */
+    #section-footer .footer-layout {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 30px 20px;
+      background-color: var(--primary-color);
+      color: var(--button-text);
+      border-radius: 8px;
+      box-shadow: 0 -2px 8px var(--shadow-color);
+    }
+    #section-footer .footer-column {
+      flex: 1;
+      min-width: 200px;
+    }
+    #section-footer .footer-column h3 {
+      font-family: var(--heading-font);
+      font-size: 1.3em;
+      margin-bottom: 15px;
+      color: var(--button-text);
+    }
+    #section-footer .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #section-footer .footer-column li {
+      margin-bottom: 8px;
+    }
+    #section-footer .footer-column a {
+      color: var(--button-text);
+      transition: color 0.3s ease;
+    }
+    #section-footer .footer-column a:hover {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: underline;
+    }
+    #section-footer .trust-badges img {
+      height: 40px;
+      width: auto;
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    /* Responsive Breakpoints (Mobile: < 768px) */
+    @media (max-width: 767px) {
+      .container {
+        padding: 10px;
+      }
+
+      .section-title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+      }
+
+      /* Header Mobile */
+      #section-header .header-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      #section-header .header-layout .nav-menu ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      /* Banner Slider Mobile - arrows might be too small, dots are fine */
+      #section-banner .slider-nav-arrows label {
+        padding: 5px 10px;
+        font-size: 1.2em;
+      }
+
+      /* Product Detail Mobile */
+      #section-product .product-layout {
+        flex-direction: column;
+        gap: 20px;
+      }
+      #section-product .product-image {
+        min-width: unset;
+        width: 100%;
+      }
+
+      /* Tabs / Accordion Mobile */
+      #section-tabs .tab-inputs {
+        display: none; /* Hide tab labels on mobile */
+      }
+      #section-tabs .tab-content {
+        display: block; /* Ensure content is visible for accordion */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        padding: 0 10px; /* Adjust padding for accordion */
+      }
+      #section-tabs .accordion-item {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+      #section-tabs .accordion-label {
+        display: block;
+        padding: 15px 20px;
+        background-color: var(--primary-color);
+        color: var(--button-text);
+        cursor: pointer;
+        font-family: var(--heading-font);
+        font-size: 1.1em;
+        position: relative;
+      }
+      #section-tabs .accordion-label::after {
+        content: '+';
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+      }
+      #section-tabs input[type="radio"]:checked + .accordion-label::after {
+        content: '-';
+        transform: translateY(-50%) rotate(180deg);
+      }
+      #section-tabs input[type="radio"]:checked ~ .tab-content {
+        max-height: 500px; /* Arbitrary large value for expansion */
+        padding: 15px 20px;
+      }
+
+      /* Gallery Mobile */
+      #section-gallery .gallery-layout {
+        grid-template-columns: repeat(2, 1fr); /* 2xN grid on mobile */
+        gap: 15px;
+      }
+      #section-gallery .gallery-item img {
+        height: 150px; /* Smaller height for mobile gallery */
+      }
+
+      /* Footer Mobile */
+      #section-footer .footer-layout {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      #section-footer .footer-column {
+        min-width: unset;
+        width: 100%;
+      }
+      #section-footer .trust-badges {
+        text-align: center;
+      }
+      #section-footer .trust-badges img {
+        margin: 0 5px 10px 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Section 1: Header -->
+  <section id="section-header">
+    <div class="container">
+      <div class="header-layout">
+        <div class="logo">
+          <a href="https://www.ebay.com/str/uwajhjewels">
+            <img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/logo.png" alt="Company Logo">
+          </a>
+        </div>
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="https://www.ebay.com/str/uwajhjewels?_tab=about">HOME</a></li>
+            <li><a href="https://www.ebay.com/str/uwajhjewels">Shop</a></li>
+            <li><a href="https://www.ebay.com/str/uwajhjewels?_tab=sales">Deals</a></li>
+            <li><a href="https://www.ebay.com/cnt/intermediatedFAQ?requested=shullee">Contact</a></li>
+            <li><a href="https://www.ebay.com/str/uwajhjewels?_tab=feedback">Feedback</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="content-data" style="display: none;">
+      <!-- logo link - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/logo.jpeg" -->
+      <!-- menu links - -->
+      <!-- HOME - "https://www.ebay.com/str/uwajhjewels?_tab=about" -->
+      <!-- Shop- "https://www.ebay.com/str/uwajhjewels" -->
+      <!-- Deals- "https://www.ebay.com/str/uwajhjewels?_tab=sales" -->
+      <!-- Contact- "https://www.ebay.com/cnt/intermediatedFAQ?requested=shullee" -->
+      <!-- feedback - "https://www.ebay.com/str/uwajhjewels?_tab=feedback" -->
+    </div>
+  </section>
+
+  <!-- Section 2: Banner Slider -->
+  <section id="section-banner">
+    <div class="container">
+      <div class="slider-container">
+        <input type="radio" name="slider" id="slide1" checked>
+        <input type="radio" name="slider" id="slide2">
+        <input type="radio" name="slider" id="slide3">
+        <input type="radio" name="slider" id="slide4">
+
+        <div class="slider-wrapper">
+          <div class="slider-slide"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_1.jpeg" alt="Banner 1"></div>
+          <div class="slider-slide"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_2.jpeg" alt="Banner 2"></div>
+          <div class="slider-slide"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_3.jpeg" alt="Banner 3"></div>
+          <div class="slider-slide"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_4.jpeg" alt="Banner 4"></div>
+        </div>
+
+        <div class="slider-nav-arrows">
+          <label for="slide4" class="prev-arrow" id="prev-slide1">&#10094;</label>
+          <label for="slide2" class="next-arrow" id="next-slide1">&#10095;</label>
+
+          <label for="slide1" class="prev-arrow" id="prev-slide2">&#10094;</label>
+          <label for="slide3" class="next-arrow" id="next-slide2">&#10095;</label>
+
+          <label for="slide2" class="prev-arrow" id="prev-slide3">&#10094;</label>
+          <label for="slide4" class="next-arrow" id="next-slide3">&#10095;</label>
+
+          <label for="slide3" class="prev-arrow" id="prev-slide4">&#10094;</label>
+          <label for="slide1" class="next-arrow" id="next-slide4">&#10095;</label>
+        </div>
+        <div class="slider-nav-dots">
+          <label for="slide1"></label>
+          <label for="slide2"></label>
+          <label for="slide3"></label>
+          <label for="slide4"></label>
+        </div>
+      </div>
+    </div>
+    <div class="content-data" style="display: none;">
+      <!-- banner links - -->
+      <!-- banner1 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_1.jpeg" -->
+      <!-- banner2 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_2.jpeg" -->
+      <!-- banner3 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_3.jpeg" -->
+      <!-- banner4 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/banner_4.jpeg" -->
+    </div>
+  </section>
+
+  <!-- Section 3: Product Detail -->
+  <section id="section-product">
+    <div class="container">
+      <h2 class="section-title">Product Details</h2>
+      <div class="product-layout">
+        <div class="product-image">
+          <img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg" alt="Product Image">
+        </div>
+        <div class="product-info">
+          <h1 class="product-title">Exquisite Handcrafted Silver Necklace</h1>
+          <div class="product-tags">#Jewelry #Handmade #Silver #Necklace #Unique</div>
+          <table class="product-specs">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Material</td>
+                <td>925 Sterling Silver</td>
+              </tr>
+              <tr>
+                <td>Weight</td>
+                <td>15 grams</td>
+              </tr>
+              <tr>
+                <td>Length</td>
+                <td>18 inches (adjustable)</td>
+              </tr>
+              <tr>
+                <td>Gemstone</td>
+                <td>Natural Amethyst</td>
+              </tr>
+              <tr>
+                <td>Craftsmanship</td>
+                <td>Hand-forged, Polished Finish</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="product-description">
+            <p>Discover the timeless elegance of our handcrafted silver necklace, a true masterpiece designed to captivate. Each piece is meticulously forged from high-quality 925 sterling silver, ensuring durability and a brilliant shine. Adorned with a natural amethyst, known for its calming properties and stunning purple hue, this necklace is perfect for adding a touch of sophistication to any outfit.</p>
+            <p>Whether for a special occasion or daily wear, its unique design and comfortable fit make it an ideal choice. A perfect gift for loved ones or a cherished addition to your own collection.</p>
+          </div>
+          <div class="product-highlights">
+            <h3>Key Highlights:</h3>
+            <ul>
+              <li>Authentic 925 Sterling Silver</li>
+              <li>Genuine Natural Amethyst Gemstone</li>
+              <li>Artisan Handcrafted Design</li>
+              <li>Adjustable Length for Perfect Fit</li>
+              <li>Hypoallergenic and Tarnish-Resistant</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-data" style="display: none;">
+      <!-- product image link - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg" -->
+      <!-- Dummy text for title, tags, description, highlights, table data -->
+    </div>
+  </section>
+
+  <!-- Section 4: Tabbed Details / Accordion -->
+  <section id="section-tabs">
+    <div class="container">
+      <h2 class="section-title">Policies & Information</h2>
+      <div class="tabs-layout">
+        <!-- Desktop Tabs -->
+        <input type="radio" name="tabs" id="tab1" checked>
+        <input type="radio" name="tabs" id="tab2">
+        <input type="radio" name="tabs" id="tab3">
+        <input type="radio" name="tabs" id="tab4">
+
+        <div class="tab-inputs">
+          <label for="tab1" class="tab-label">About Us</label>
+          <label for="tab2" class="tab-label">Shipping</label>
+          <label for="tab3" class="tab-label">Payment</label>
+          <label for="tab4" class="tab-label">Return</label>
+        </div>
+
+        <!-- Mobile Accordion (hidden on desktop by default, shown via media query) -->
+        <div class="accordion-wrapper">
+          <div class="accordion-item">
+            <input type="radio" name="accordion" id="acc1">
+            <label for="acc1" class="accordion-label">About Us</label>
+            <div class="tab-content" id="content1">
+              <p>Welcome to our store! We are passionate about bringing you unique, high-quality handcrafted jewelry. Each piece is created with love and attention to detail, ensuring you receive a truly special item. Our mission is to provide beautiful accessories that celebrate individuality and craftsmanship.</p>
+              <p>We believe in sustainable practices and source our materials responsibly. Thank you for supporting our small business and the art of handmade jewelry.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <input type="radio" name="accordion" id="acc2">
+            <label for="acc2" class="accordion-label">Shipping</label>
+            <div class="tab-content" id="content2">
+              <p>We offer worldwide shipping. Orders are typically processed and dispatched within 1-3 business days. Standard shipping usually takes 7-14 business days, depending on your location. Expedited shipping options are available at checkout for faster delivery.</p>
+              <p>All items are carefully packaged to ensure they arrive in perfect condition. You will receive a tracking number once your order has shipped.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <input type="radio" name="accordion" id="acc3">
+            <label for="acc3" class="accordion-label">Payment</label>
+            <div class="tab-content" id="content3">
+              <p>We accept a variety of secure payment methods, including major credit cards (Visa, MasterCard, American Express, Discover) and PayPal. All transactions are processed through secure gateways to protect your financial information.</p>
+              <p>Payment is required at the time of purchase. If you encounter any issues during checkout, please contact us for assistance.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <input type="radio" name="accordion" id="acc4">
+            <label for="acc4" class="accordion-label">Return</label>
+            <div class="tab-content" id="content4">
+              <p>Your satisfaction is our priority. If you are not completely happy with your purchase, you may return it within 30 days of receipt for a full refund or exchange. Items must be returned in their original condition and packaging.</p>
+              <p>Please contact us before initiating a return to receive detailed instructions. Return shipping costs are the responsibility of the buyer, unless the item received is damaged or incorrect.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-data" style="display: none;">
+      <!-- Tab Items: About Us, Shipping, Payment, Return -->
+      <!-- Dummy content for each tab -->
+    </div>
+  </section>
+
+  <!-- Section 5: Gallery (Cross-Selling) -->
+  <section id="section-gallery">
+    <div class="container">
+      <h2 class="section-title">More Products You Might Like</h2>
+      <div class="gallery-layout">
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg" alt="Product 1"></a>
+          <div class="gallery-item-title">Silver Ring</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_2.jpeg" alt="Product 2"></a>
+          <div class="gallery-item-title">Gold Earrings</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_3.jpeg" alt="Product 3"></a>
+          <div class="gallery-item-title">Pearl Bracelet</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_4.jpeg" alt="Product 4"></a>
+          <div class="gallery-item-title">Diamond Pendant</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_5.jpeg" alt="Product 5"></a>
+          <div class="gallery-item-title">Emerald Necklace</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_6.jpeg" alt="Product 6"></a>
+          <div class="gallery-item-title">Ruby Studs</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_7.jpeg" alt="Product 7"></a>
+          <div class="gallery-item-title">Sapphire Ring</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_8.jpeg" alt="Product 8"></a>
+          <div class="gallery-item-title">Topaz Bracelet</div>
+        </div>
+        <div class="gallery-item">
+          <a href="#"><img src="https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_9.jpeg" alt="Product 9"></a>
+          <div class="gallery-item-title">Garnet Earrings</div>
+        </div>
+      </div>
+    </div>
+    <div class="content-data" style="display: none;">
+      <!-- products links - -->
+      <!-- prodduct 1 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg" -->
+      <!-- prodduct 2 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_2.jpeg" -->
+      <!-- prodduct 3 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_3.jpeg" -->
+      <!-- prodduct 4 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_4.jpeg" -->
+      <!-- prodduct 5 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_5.jpeg" -->
+      <!-- prodduct 6 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_6.jpeg" -->
+      <!-- prodduct 7 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_7.jpeg" -->
+      <!-- prodduct 8 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_8.jpeg" -->
+      <!-- product 9 - "https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_9.jpeg" -->
+      <!-- product 10 -"https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_10.jpeg" -->
+    </div>
+  </section>
+
+  <!-- Section 6: Footer -->
+  <section id="section-footer">
+    <div class="container">
+      <div class="footer-layout">
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="https://www.ebay.com/str/uwajhjewels?_tab=about">About Us</a></li>
+            <li><a href="https://www.ebay.com/str/uwajhjewels">Shop All</a></li>
+            <li><a href="https://www.ebay.com/str/uwajhjewels?_tab=sales">Deals & Offers</a></li>
+            <li><a href="https://www.ebay.com/str/uwajhjewels?_tab=feedback">Customer Feedback</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <p>Email: <a href="mailto:support@example.com" style="color: inherit;">support@example.com</a></p>
+          <p>Phone: +1 (123) 456-7890</p>
+          <p>Address: 123 Jewelry Lane, Gemstone City, JC 12345</p>
+        </div>
+        <div class="footer-column">
+          <h3>Shop with Confidence</h3>
+          <div class="trust-badges">
+            <img src="/placeholder.svg?height=40&width=80" alt="Secure Payment">
+            <img src="/placeholder.svg?height=40&width=80" alt="Satisfaction Guarantee">
+            <img src="/placeholder.svg?height=40&width=80" alt="Fast Shipping">
+          </div>
+          <p style="margin-top: 15px;">&copy; 2025 Your Brand. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+    <div class="content-data" style="display: none;">
+      <!-- Dummy links, contact info, trust badges -->
+    </div>
+  </section>
+</body>
+</html>
