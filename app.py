@@ -25,72 +25,236 @@ def main():
     window = PRDGeneratorUI(config=config)
     window.show()
     
+    # def process_prompts(prompts: dict, excel_file: str = 'links.xlsx') -> tuple[dict, str]:
+    #     import re
+
+    #     # Load Excel
+    #     xls = pd.ExcelFile(excel_file)
+    #     df_banners = pd.read_excel(xls, sheet_name='banners')
+    #     df_cross = pd.read_excel(xls, sheet_name='Cross Selling')
+    #     df_header = pd.read_excel(xls, sheet_name='header')
+    #     df_menu = pd.read_excel(xls, sheet_name='menu bar')
+
+    #     # Banner block
+    #     col0 = df_banners.columns[0]
+    #     urls = []
+    #     if isinstance(col0, str) and col0.lower().startswith('http'):
+    #         urls.append(col0.strip())
+    #     urls += df_banners.iloc[:, 0].dropna().astype(str).str.strip().tolist()
+    #     banner_block = "\n".join([f"banner{idx+1} → {url} ," for idx, url in enumerate(urls)])
+
+    #     # Image links and item links
+    #     img_urls = df_cross['Image Link'].dropna().astype(str).str.strip().tolist()
+    #     image_block = "\n".join(f"Product {i+1}: {u} ," for i, u in enumerate(img_urls))
+    #     item_ids = df_cross['Item ID'].dropna().astype(str).str.strip().tolist()
+    #     item_block = "\n".join(
+    #         f"Product {i+1}: https://www.ebay.com/itm/{item_id} , " for i, item_id in enumerate(item_ids)
+    #     )
+
+    #     # Header info
+    #     shop_name_col = [c for c in df_header.columns if c.lower() != 'shop name'][0]
+    #     store_name_col = [c for c in df_header.columns if c.lower() != 'store name'][0]
+    #     shop_name = shop_name_col.strip()
+    #     store_name = store_name_col.strip()
+    #     logo_link = str(df_header.iloc[0, 1]).strip()
+    #     store_name = re.sub(r'\s+', '', shop_name).lower()
+
+    #     # Default menu list (normalized)
+    #     default_menu_titles = ['about us', 'contact us', 'feedback', 'new arrival', 'on sale']
+    #     default_menu_links = {
+    #         'about us': f'https://www.ebay.com/str/{store_name}?_tab=about',
+    #         'on sale': f'https://www.ebay.com/str/{store_name}?_tab=sales',
+    #         'feedback': f'https://www.ebay.com/str/{store_name}?_tab=feedback',
+    #         'new arrival': f'https://www.ebay.com/sch/i.html?_dkr=1&iconV2Request=true&_blrs=recall_filtering&_ssn={shop_name}&store_name={store_name}&_sop=10&_oac=1',
+    #         'contact us': f'https://www.ebay.com/cnt/intermediatedFAQ?requested={shop_name}'
+    #     }
+
+    #     # MENU STRUCTURE
+    #     menu_structure_lines = []
+    #     menu_links_lines = []
+
+    #     # Convert menu bar into dict format
+    #     menu_dict = {}
+    #     for col in df_menu.columns:
+    #         parent = col.strip().lower()
+    #         children = df_menu[col].dropna().astype(str).str.strip().str.lower().tolist()
+    #         if children:
+    #             menu_dict[parent] = children
+    #         else:
+    #             menu_dict[parent] = []
+
+    #     # Flatten keys and children
+    #     all_flat_menus = set(menu_dict.keys()).union(*menu_dict.values())
+    #     if all_flat_menus == set(default_menu_titles):
+    #         # Use default menu
+    #         for item in default_menu_titles:
+    #             link = default_menu_links[item]
+    #             menu_links_lines.append(f"{item.title()} - {link}")
+    #         menu_structure_lines = [item.title() for item in default_menu_titles]
+    #     else:
+    #         # Custom menu
+    #         for parent, children in menu_dict.items():
+    #             display_parent = parent.title()
+    #             # Get link
+    #             if parent in default_menu_links:
+    #                 link = default_menu_links[parent]
+    #             else:
+    #                 link = f"https://www.ebay.com/sch/i.html?_dkr=1&iconV2Request=true&_blrs=recall_filtering&store_name={store_name}&_oac=1&_nkw={parent.replace(' ', '+')}"
+    #             menu_links_lines.append(f"{display_parent} - {link}")
+
+    #             if children:
+    #                 formatted_children = ", ".join(child.title() for child in children)
+    #                 menu_structure_lines.append(f"{display_parent} - {formatted_children}")
+    #             else:
+    #                 menu_structure_lines.append(display_parent)
+
+    #     menu_links_text = "Menu Links\n" + "\n".join(menu_links_lines)
+    #     menu_structure_text = "Menu Structure\n" + "\n".join(menu_structure_lines)
+
+    #     full_menu_block = f"{menu_links_text}\n\n{menu_structure_text}"
+
+    #     # Placeholder Replacement with Error Logging
+    #     errors = []
+    #     updated = prompts.copy()
+
+    #     def check_replace(key, placeholder, replacement):
+    #         text = updated.get(key, '')
+    #         if placeholder not in text:
+    #             errors.append(f"Missing {placeholder} in prompts['{key}']")
+    #         updated[key] = text.replace(placeholder, replacement)
+
+    #     check_replace('banner', '${banner links}$', banner_block)
+    #     check_replace('gallery', '${image links}$', image_block)
+    #     check_replace('gallery', '${item links}$', item_block)
+    #     check_replace('header', '${logo link}$', logo_link)
+    #     check_replace('header', '${menu}$', full_menu_block)
+
+
+    #     if errors:
+    #         raise ValueError("Placeholder replacement errors:\n" + "\n".join(f"  - {e}" for e in errors))
+
+    #     return updated
+
     def process_prompts(prompts: dict, excel_file: str = 'links.xlsx') -> tuple[dict, str]:
-        """
-        Reads:
-        - 'banners' sheet (one column where header+cells are all URLs),
-        - 'Cross Selling' sheet (columns 'Image Link', 'Item ID'),
-        - 'header' sheet (first col header 'Shop Name' with row0='Logo Link', second col header is shop name),
-        then builds:
-        • banner links block → replaces ${banner links}$
-        • image links block  → replaces ${image links}$
-        • item links block   → replaces ${item links}$
-        • logo link          → replaces ${logo link}$
-        • shop name          → replaces ${shop_name}$
+        import re
 
-        Returns updated_prompts, shop_name
-        """
-        # 1) Load sheets
-        xls        = pd.ExcelFile(excel_file)
+        # Load Excel
+        xls = pd.ExcelFile(excel_file)
         df_banners = pd.read_excel(xls, sheet_name='banners')
-        df_cross   = pd.read_excel(xls, sheet_name='Cross Selling')
-        df_header  = pd.read_excel(xls, sheet_name='header')
-        # (menu bar is read if needed)
-        # df_menu = pd.read_excel(xls, sheet_name='menu bar')
+        df_cross = pd.read_excel(xls, sheet_name='Cross Selling')
+        df_header = pd.read_excel(xls, sheet_name='header')
+        df_menu = pd.read_excel(xls, sheet_name='menu bar')
 
-        # 2) Extract all banner URLs from the single column (header + cells)
+        # Banner block
         col0 = df_banners.columns[0]
         urls = []
-        # if header itself is a URL, include it
         if isinstance(col0, str) and col0.lower().startswith('http'):
             urls.append(col0.strip())
-        # then every non-null cell
-        urls += df_banners.iloc[:,0].dropna().astype(str).str.strip().tolist()
+        urls += df_banners.iloc[:, 0].dropna().astype(str).str.strip().tolist()
+        banner_block = "\n".join([f"banner{idx+1} → {url} ," for idx, url in enumerate(urls)])
 
-        banner_lines = [f"banner{idx+1} → {url} , " for idx, url in enumerate(urls)]
-        banner_block = "\n".join(banner_lines)
-
-        # 3) Build image‐links block from 'Image Link' column
+        # Image links and item links
         img_urls = df_cross['Image Link'].dropna().astype(str).str.strip().tolist()
-        image_block = "\n".join(f"Product {i+1}: {u} , " for i, u in enumerate(img_urls))
-
-        # 4) Build eBay item‐links block from 'Item ID'
+        image_block = "\n".join(f"Product {i+1}: {u} ," for i, u in enumerate(img_urls))
         item_ids = df_cross['Item ID'].dropna().astype(str).str.strip().tolist()
         item_block = "\n".join(
-            f"Product {i+1}: https://www.ebay.com/itm/{item_id} , "
-            for i, item_id in enumerate(item_ids)
+            f"Product {i+1}: https://www.ebay.com/itm/{item_id} , " for i, item_id in enumerate(item_ids)
         )
 
-        # 5) Parse header sheet for shop name & logo link
-        #    Header columns look like ['Shop Name', '<your shop>']
-        shop_name_col = [c for c in df_header.columns if c.lower() != 'shop name'][0]
-        shop_name     = shop_name_col.strip()
-        # row0 under 'Shop Name' == 'Logo Link', so logo is in the second column
-        logo_link     = str(df_header.iloc[0, 1]).strip()
+        # Header info
+        header_map = pd.Series(df_header.iloc[:, 1].values, index=df_header.iloc[:, 0]).to_dict()
 
-        # 6) Replace placeholders in prompts
+        shop_name = str(header_map.get('Shop Name', '')).strip()
+        store_name = str(header_map.get('Store Name', '')).strip()
+        logo_link  = str(header_map.get('Logo Link', '')).strip()
+
+        shop_name = shop_name.strip()
+        store_name = store_name.strip()
+        store_name = re.sub(r'\s+', '', store_name).lower()
+        shop_name = re.sub(r'\s+', '', shop_name).lower()
+
+        # Default menu list (normalized)
+        default_menu_titles = ['about us', 'contact us', 'feedback', 'new arrival', 'on sale']
+        default_menu_links = {
+            'about us': f'https://www.ebay.com/str/{store_name}?_tab=about',
+            'on sale': f'https://www.ebay.com/str/{store_name}?_tab=sales',
+            'feedback': f'https://www.ebay.com/str/{store_name}?_tab=feedback',
+            'new arrival': f'https://www.ebay.com/sch/i.html?_dkr=1&iconV2Request=true&_blrs=recall_filtering&_ssn={shop_name}&store_name={store_name}&_sop=10&_oac=1',
+            'contact us': f'https://www.ebay.com/cnt/intermediatedFAQ?requested={shop_name}'
+        }
+
+        # MENU STRUCTURE
+        menu_structure_lines = []
+        menu_links_lines = []
+
+        # Convert menu bar into dict format
+        menu_dict = {}
+        for col in df_menu.columns:
+            parent = col.strip().lower()
+            children = df_menu[col].dropna().astype(str).str.strip().str.lower().tolist()
+            if children:
+                menu_dict[parent] = children
+            else:
+                menu_dict[parent] = []
+
+        # Flatten keys and children
+        all_flat_menus = set(menu_dict.keys()).union(*menu_dict.values())
+        if all_flat_menus == set(default_menu_titles):
+            # Use default menu
+            for item in default_menu_titles:
+                link = default_menu_links[item]
+                menu_links_lines.append(f"{item.title()} - {link}")
+            menu_structure_lines = [item.title() for item in default_menu_titles]
+        else:
+            # Custom menu
+            for parent, children in menu_dict.items():
+                display_parent = parent.title()
+                # Get link
+                if parent in default_menu_links:
+                    link = default_menu_links[parent]
+                else:
+                    link = f"https://www.ebay.com/sch/i.html?_dkr=1&iconV2Request=true&_blrs=recall_filtering&store_name={shop_name}&_oac=1&_nkw={parent.replace(' ', '+')}"
+                menu_links_lines.append(f"{display_parent} - {link}")
+
+                if children:
+                    formatted_children = ", ".join(child.title() for child in children)
+                    menu_structure_lines.append(f"{display_parent} - {formatted_children}")
+                else:
+                    menu_structure_lines.append(display_parent)
+
+        menu_links_text = "Menu Links\n" + "\n".join(menu_links_lines)
+        menu_structure_text = "Menu Structure\n" + "\n".join(menu_structure_lines)
+
+        full_menu_block = f"{menu_links_text}\n\n{menu_structure_text}"
+
+        # Placeholder Replacement with Error Logging
+        errors = []
         updated = prompts.copy()
-        updated['banner']    = updated.get('banner', '') \
-            .replace('${banner links}$', banner_block)
 
-        updated['gallery']   = updated.get('gallery', '') \
-            .replace('${image links}$', image_block)
+        def check_replace(key, placeholder, replacement):
+            text = updated.get(key, '')
+            if placeholder not in text:
+                errors.append(f"Missing {placeholder} in prompts['{key}']")
+            updated[key] = text.replace(placeholder, replacement)
 
-        updated['gallery']   = updated.get('gallery', '') \
-            .replace('${item links}$',  item_block)
+        check_replace('banner', '${banner links}$', banner_block)
+        check_replace('gallery', '${image links}$', image_block)
+        check_replace('gallery', '${item links}$', item_block)
+        check_replace('header', '${logo link}$', logo_link)
+        check_replace('header', '${menu}$', full_menu_block)
+        
+        # Add the new replacements for shop_name and store_name
+        # check_replace('header', '{shop_name}', shop_name)
+        # check_replace('header', '{store_name}', store_name)
+        
+        # You might want to check other keys that might contain these placeholders
+        for key in updated:
+            if key != 'header':  # We already processed header
+                updated[key] = updated[key].replace('{shop_name}', shop_name)
+                updated[key] = updated[key].replace('{store_name}', store_name)
 
-        updated['header']    = updated.get('header', '') \
-            .replace('${logo link}$',   logo_link) 
+        if errors:
+            raise ValueError("Placeholder replacement errors:\n" + "\n".join(f"  - {e}" for e in errors))
 
         return updated
 

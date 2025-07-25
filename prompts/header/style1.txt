@@ -15,10 +15,5 @@ Section 1: Header
  Logo URL:
   `${logo link}$`
  Menu Items (Label → Link):
-   HOME → `https://www.ebay.com/str/uwajhjewels?_tab=about`
-   SHOP → `https://www.ebay.com/str/uwajhjewels`
-   DEALS → `https://www.ebay.com/str/uwajhjewels?_tab=sales`
-   CONTACT → `https://www.ebay.com/cnt/intermediatedFAQ?requested=shullee`
-   FEEDBACK → `https://www.ebay.com/str/uwajhjewels?_tab=feedback`
-
+${menu}$
 
