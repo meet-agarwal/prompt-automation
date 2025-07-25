@@ -8,7 +8,8 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, QSize, QPropertyAnimation, QEasingCurve, QPoint, pyqtSignal
 from PyQt5.QtGui import QFont, QIcon, QFontDatabase, QPalette, QColor, QPainter, QBrush, QLinearGradient
-
+from PyQt5.QtCore import pyqtSignal
+  
 class CardFrame(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -201,6 +202,7 @@ class TabButton(QPushButton):
             """)
 
 class PRDGeneratorUI(QWidget):
+    generationRequested = pyqtSignal(dict)
     def __init__(self, config):
         super().__init__()
         self.setWindowTitle("PRD Generator for Ecommerce")
@@ -433,7 +435,7 @@ class PRDGeneratorUI(QWidget):
             if child.widget():
                 child.widget().deleteLater()
 
-    from PyQt5.QtCore import Qt
+
 
 
 
@@ -552,3 +554,4 @@ class PRDGeneratorUI(QWidget):
         msg.setStandardButtons(QMessageBox.Ok)
         msg.setFixedSize(700, 400)
         msg.exec_()
+        self.generationRequested.emit(self.selected_styles)

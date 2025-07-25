@@ -21,7 +21,7 @@
     "information" : {
         "style1" : "Tabbed Info Section , Arodian in Mobile view"
     },
-    "galler" : {
+    "gallery" : {
         "style1" : "10 Cards , Horizontal AutoSlide Scroll , pause when hover",
         "style2" : "8 Cards , Grid View 2x4",
         "style3" : "9 Cards , Grid View 3x3"

@@ -17,7 +17,8 @@ CONTENT REQUIREMENTS:
 1. Title (H2 element)
 2. Product Image:
    - Square aspect ratio
-   - Sample URL: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg
+   - Sample URL: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/meet/product_1.jpeg
+
 3. Description:
    - Single paragraph in a dedicated box
    - Minimum 3-4 sentences

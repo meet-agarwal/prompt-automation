@@ -37,6 +37,8 @@ class PromptReader:
         :returns: dict mapping each section to the raw text of its selected file
         :rtype: dict[str, str]
         """
+        
+        print("inside the read file method")
         result = {}
         for section, style_key in selection_map.items():
             filename = f"{style_key}.txt"

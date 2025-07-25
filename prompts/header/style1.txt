@@ -13,7 +13,7 @@ Section 1: Header
  Use pastel color palettes or inherit from the selected visual theme.
  Links:
  Logo URL:
-  `https://listingbot.s3.apsouth1.amazonaws.com/resources/images/shullee/logo.png`
+  `${logo link}$`
  Menu Items (Label → Link):
    HOME → `https://www.ebay.com/str/uwajhjewels?_tab=about`
    SHOP → `https://www.ebay.com/str/uwajhjewels`

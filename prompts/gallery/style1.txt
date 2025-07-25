@@ -18,18 +18,10 @@ Display 10 related product cards in a horizontally scrolling, auto-sliding galle
      - Smooth, seamless looping effect.  
 
 3. Image Links:  
-   ```plaintext
-   Product 1: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg  
-   Product 2: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_2.jpeg  
-   Product 3: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_3.jpeg  
-   Product 4: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_4.jpeg  
-   Product 5: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_5.jpeg  
-   Product 6: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_6.jpeg  
-   Product 7: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_7.jpeg  
-   Product 8: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_8.jpeg  
-   Product 9: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_9.jpeg  
-   Product 10: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_10.jpeg  
-   ```
+${image links}$
+
+4. Item Links :
+${item links}$
 
 4. Technical Implementation Notes:  
    - Use `display: flex` for the card container.  
