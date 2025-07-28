@@ -1,0 +1,53 @@
+Section 5: Gallery (Cross-Selling)  
+
+ Objective:  
+Display 10 related product cards in a horizontally scrolling, auto-sliding gallery with a uniform layout.  
+
+ Requirements:  
+1. Card Layout:  
+   - Image (80% height): Square-shaped (1:1 aspect ratio), covering the top 80% of the card.  
+   - Button (20% height): A "View Item" button at the bottom, spanning the full width.  
+   - Overall Card: Uniform size for all cards with consistent spacing.  
+
+2. Gallery Behavior:  
+   - Auto-Slide Scroll:  
+     - Infinite, smooth, continuous horizontal scrolling.  
+     - Pauses on hover (user interaction).  
+   - CSS-Only Implementation:  
+     - Must use `@keyframes` for animation (no JavaScript).  
+     - Smooth, seamless looping effect.
+     
+
+3. Image Links:  
+${image links}$
+
+4. Item Links :
+${item links}$
+
+4. Technical Implementation Notes:  
+   - Use `display: flex` for the card container.  
+   - Apply `@keyframes` with `transform: translateX()` for smooth scrolling.  
+   - Ensure hover pauses the animation (`animation-play-state: paused`).  
+   - Optimize for responsiveness (works on different screen sizes).  
+   - there will be duplicate gallery so that we can perciver the infinite scrolling effect 
+   - All Images must have padding , border and border shadows
+   - let each cards width be 15 rem 
+   - duplicate the gallery after orignal so that there will be no lag when scroll to the end   
+	Duplicate Content:
+	Original Cards: 10 cards (IDs: 1–10).
+	Duplicated Cards: Same 10 cards (IDs: 11–20) appended immediately after.
+	Total Cards in DOM: 20 (10 originals + 10 duplicates).
+
+<div class="gallery-wrapper"> <!-- Overflow hidden -->  
+  <div class="gallery-container"> <!-- Flex container -->  
+    <!-- Original 10 cards -->  
+    <div class="card">...</div> <!-- Card 1 -->  
+    ...  
+    <div class="card">...</div> <!-- Card 10 -->  
+    <!-- Duplicated 10 cards -->  
+    <div class="card">...</div> <!-- Card 1 (duplicate) -->  
+    ...  
+    <div class="card">...</div> <!-- Card 10 (duplicate) -->  
+  </div>  
+</div>  
+	

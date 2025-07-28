@@ -1,0 +1,45 @@
+
+
+"3. PRODUCT SECTION REQUIREMENTS
+
+STRUCTURE:
+1. Title: Centered H2 heading at the very top of the section
+2. Product Image: 
+   - Square aspect ratio image placed directly below the title
+3. Description Box:
+   - Single paragraph container placed below the product image
+4. Detail Table:
+   - Product specifications table placed below the description box
+   - Strict table HTML requirements:
+     • Only `<table>`, `<tr>`, and `<td>` tags allowed
+     • No IDs or classes on rows/cells
+     • All styling must be on `<table>` tag only
+
+CONTENT REQUIREMENTS:
+1. Title (H2 element)
+2. Product Image:
+   - Square aspect ratio
+   - Sample URL: https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg
+3. Description Box:
+   - Single paragraph container
+   - Minimum 3-4 sentences of product description
+4. Detail Table:
+   - Key product specifications
+   - Organized in clear rows/columns
+   - Example content:
+      Material: [value]
+      Dimensions: [value]
+      Weight: [value]
+      Color: [value]
+
+STYLING REQUIREMENTS:
+- All CSS must be contained within `<style>` tags in `<head>`
+- No inline styles permitted
+- Table styling must only apply to `<table>` element
+- Description box should have distinct styling (padding, background, etc.)
+- Image should maintain square aspect ratio regardless of container size
+- the width of the table and description box and the image must be same in the desktop view 
+
+VISUAL HIERARCHY:
+Title → Image → Description → Table
+(All elements stacked vertically in this exact order)"

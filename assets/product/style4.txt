@@ -1,0 +1,92 @@
+3. PRODUCT SECTION
+Provide a self‑contained HTML snippet for a single product section, adhering to these requirements:
+
+---
+
+ 1. STRUCTURE
+
+1. Section Title
+
+    `<h2>` element, centered at top.
+2. Two‑column layout (side‑by‑side on desktop; stacked on mobile):
+
+    Left column:
+
+      Square product image (`<img>`), full width of column.
+      Below image: description box (single `<p>` inside a styled container).
+    Right column:
+
+      Product details table (`<table>`, `<tr>`, `<td>` only).
+      No IDs/classes on `<tr>` or `<td>`.
+      All table styling applied via a selector on `<table>` only.
+3. Tags sub‑section
+
+   Create a horizontal tag list component with the following features:
+
+Tags Content:
+
+"Free Next Day Delivery"
+
+"30 Days Return Policy"
+
+"See our return policy"
+
+"Online & Phone Support"
+
+"100% Buyer Satisfaction"
+
+Styling Requirements:
+
+Each tag must include a relevant Font Awesome icon before the text (choose appropriate icons like fa-truck, fa-undo, fa-info-circle, fa-headset, or fa-smile).
+
+Clean, visually separated tags with proper spacing.
+
+Responsive behavior (tags should wrap on smaller screens).
+
+Platform-agnostic design (suitable for e-commerce but not tied to eBay/Etsy).
+
+Visually appealing with balanced typography, colors, and alignment.
+
+Technical Constraints:
+
+Use only HTML and CSS (inside a <style> tag).
+
+No inline styles or JavaScript.
+
+Icons must be implemented using Font Awesome classes.
+
+Output: A standalone, responsive tag list with icon
+
+---
+
+ 2. CONTENT
+
+ Title text: Insert a realistic product name.
+ Image URL:
+
+  ```
+  https://listingbot.s3.ap-south-1.amazonaws.com/resources/images/shullee/product_1.jpeg
+  ```
+ Description: 3–4 complete sentences describing the product’s key benefits.
+ Detail table rows: At least 4 specification pairs (e.g. “Material” / “Sterling Silver”, “Weight” / “5 g”, etc.).
+ Tags: Exactly these four (in any order):
+
+  1. Free Next Day Delivery
+  2. 30 Days Return Policy
+  3. See our return policy
+  4. Online & Phone Support
+  5. 100% Buyer Satisfaction
+
+---
+
+ 3. STYLING
+
+ All CSS inside a single `<style>` block in `<head>`.
+ No inline `style` attributes.
+ Table styling must target only the `<table>` element (e.g. `table { … }`).
+ Provide mobile‑responsive behavior (columns stack below 768 px).
+  the image should have appropriate padding and the margin ,
+ the image should have the border and border shadow 
+ 
+
+

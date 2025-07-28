@@ -1,0 +1,27 @@
+Section: Footer (Minimalist Branding)
+
+Objective: Present a clean, understated footer that reinforces store identity and policies without clutter.
+
+Content Blocks:
+
+images of the free Shipping
+
+images of the safe and secure Shipping 
+
+Contact US
+
+Legal: Small <small> copyright line, centered.
+
+Layout & Styling:
+
+Use a centered <div> with four rows.
+
+Font-size: 0.85 rem; line-height: 1.4.
+
+Padding: 1 rem top/bottom.
+
+Border-top: 1px solid #ccc; background: transparent or very light gray (#fafafa).
+
+Links: no underline by default, underline on hover (CSS only).
+
+All CSS in a single <style> tag.

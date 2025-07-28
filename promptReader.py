@@ -4,7 +4,7 @@ import os
 import json
 
 class PromptReader:
-    def __init__(self, prompt_root='prompt'):
+    def __init__(self, prompt_root='assets'):
         """
         :param prompt_root: path to the folder containing your 6 sub‑folders and section_config.json
         """

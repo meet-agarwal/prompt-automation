@@ -1,0 +1,64 @@
+Section 1: Header
+Objective
+Create a responsive header with centered branding and desktop-only navigation featuring hover/click-activated dropdown menus.
+
+Layout Requirements
+Logo Section
+Centered horizontally (both desktop & mobile)
+
+Recommended height: 60-80px (auto-width)
+
+Navigation Menu (Desktop ≥768px)
+Horizontal bar directly below logo
+
+Evenly spaced menu items
+
+Hidden completely on mobile (<768px)
+
+Dropdown Behavior
+Trigger: Hover (primary) + click (accessibility fallback)
+
+Positioning: Aligned under parent menu item
+
+Dismissal:
+
+Mouse leaves dropdown area, OR
+
+Another dropdown opens
+
+Visual Design Constraints
+Color Scheme
+Default: Elegant colours 
+
+Hover States: Subtle background/shadows
+
+Dropdowns:
+
+Light background (#ffffff or similar)
+
+Subtle border/shadow (1px border or box-shadow)
+
+Rounded corners (4-6px radius)
+
+Typography
+Inherit from parent (no custom fonts)
+
+Consistent text sizing
+
+Technical Requirements
+Pure HTML/CSS only (zero JavaScript)
+
+Self-contained: All CSS in <style> within <head>
+
+Prohibited:
+
+External stylesheets/fonts
+
+JavaScript/jQuery
+
+Inline styles (except for demo purposes)
+
+ Logo URL:
+  `${logo link}$`
+ Menu Items (Label → Link):
+${menu}$

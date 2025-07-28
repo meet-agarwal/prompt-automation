@@ -1,0 +1,49 @@
+Header Navigation Component Specification
+Objective
+Create a clean, responsive header with:
+
+Left-aligned logo (visible on all devices)
+
+Right-aligned horizontal navigation menu (desktop only, hidden on mobile)
+
+Subtle hover effects for better interactivity
+
+Layout & Alignment
+Logo (Left Side)
+Position: Fixed to the left (aligned with container padding)
+
+Size: Auto-height (recommended max-height: 60px)
+
+Navigation Menu (Right Side, Desktop ≥768px)
+Horizontal alignment: Right-aligned
+
+Spacing: Evenly distributed with padding (e.g., 15-20px between items)
+
+Hidden on mobile (<768px)
+
+Mobile Behavior
+Only the logo appears (centered or left-aligned, as preferred)
+
+Navigation menu fully hidden
+
+Visual & Interaction Design
+Styling Constraints
+Color Scheme:
+
+Default: Inherit from theme (or use soft pastels)
+
+Hover: Subtle background/underline effect
+
+Typography: System fonts (no external imports)
+
+Responsive Breakpoint: 768px (menu hides below this width)
+
+Technical Requirements
+ Pure HTML/CSS (no JavaScript)
+ Self-contained styles (all CSS inside <style> in <head>)
+ No external resources (fonts, frameworks, or libraries)
+
+ Logo URL:
+  `${logo link}$`
+ Menu Items (Label → Link):
+${menu}$
